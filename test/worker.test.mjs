@@ -63,11 +63,17 @@ test("a body over 8 KiB is rejected, the boundary is exact", async () => {
 });
 
 test("an unknown schema version, or one that is not a number, is rejected", async () => {
-  for (const schema of [2, 0, "1", null, "constructor"]) {
+  for (const schema of [3, 0, "1", null, "constructor"]) {
     const { response, sent } = await post({ ...run, schema });
     assert.equal(response.status, 400, String(schema));
     assert.equal(sent.length, 0);
   }
+});
+
+test("failures belong to schema 2: a schema 1 body loses them, a wrong type is rejected", async () => {
+  const v3 = fixtures.find(([name]) => name === "run-3.json")[1];
+  assert.equal((await post({ ...v3, schema: 1 })).sent[0].body.properties.failures, undefined);
+  assert.equal((await post({ ...v3, failures: { ...v3.failures, input: "1" } })).response.status, 400);
 });
 
 test("malformed bodies, wrong types and unknown enum values are rejected", async () => {
