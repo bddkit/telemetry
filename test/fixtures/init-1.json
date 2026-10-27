@@ -1,0 +1,32 @@
+{
+ "schema": 1,
+ "bddkit": "0.3.3",
+ "os": "linux",
+ "arch": "x86_64",
+ "ci": null,
+ "command": "init",
+ "exit": 0,
+ "stage": null,
+ "duration_ms": 188,
+ "init": {
+  "interactive": false,
+  "plugins": {},
+  "plugins_other": 0,
+  "plugins_failed": 0,
+  "resources": {
+   "api": 1,
+   "srp": 0,
+   "db": {
+    "postgres": 0,
+    "mysql": 0,
+    "mariadb": 0
+   },
+   "plugins": {},
+   "plugins_other": 0
+  },
+  "settings": {
+   "parallel": false,
+   "project_layer": false
+  }
+ }
+}

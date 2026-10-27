@@ -1,0 +1,21 @@
+{
+ "schema": 1,
+ "bddkit": "0.3.3",
+ "os": "linux",
+ "arch": "x86_64",
+ "ci": null,
+ "command": "upgrade",
+ "exit": 1,
+ "stage": null,
+ "duration_ms": 35,
+ "upgrade": {
+  "from": "0.3.3",
+  "to": null,
+  "abi_changed": false,
+  "plugins_switched": 0,
+  "plugins_refused": 0,
+  "plugins_left": 0,
+  "result": "refused",
+  "check": true
+ }
+}

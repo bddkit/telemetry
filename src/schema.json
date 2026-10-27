@@ -1,0 +1,64 @@
+{
+  "1": {
+    "required": ["schema", "bddkit", "os", "arch", "ci", "command", "exit", "stage", "duration_ms"],
+    "fields": {
+      "schema": "int",
+      "bddkit": "str",
+      "os": "str",
+      "arch": "str",
+      "ci": {"enum": ["github", "gitlab", "jenkins", "buildkite", "circleci", "azure", "teamcity", "bitbucket", "other"]},
+      "command": {"enum": ["run", "doctor", "report", "init", "plugin_install", "plugin_update", "plugin_remove", "upgrade"]},
+      "exit": "int",
+      "stage": {"enum": ["plugins", "steps", "selection", "validation", "scheduling", "resources", "reports", "events"]},
+      "duration_ms": "int",
+      "files": "int",
+      "scenarios": "int",
+      "examples": "int",
+      "failed": "int",
+      "concurrency": "int",
+      "fail_fast": "bool",
+      "scenario_ms": {"obj": {"p50": "int", "p90": "int", "max": "int", "buckets": {"list": "int"}}},
+      "features": {"obj": {
+        "junit": "bool", "cucumber_json": "bool", "events": "bool", "artifacts_dir": "bool",
+        "tags": "bool", "paths": "bool", "env": "bool",
+        "evidence": {"list": {"enum": ["marked", "failures", "all"]}}
+      }},
+      "usage": {"map": {"obj": {"steps": "int", "ms": "int"}}},
+      "privacy": {"obj": {"reveal": "bool", "custom_words": "bool", "custom_fields": "bool"}},
+      "resources": {"obj": {
+        "api": "int", "srp": "int", "plugins_other": "int",
+        "db": {"obj": {"postgres": "int", "mysql": "int", "mariadb": "int"}},
+        "plugins": {"map": "int"}
+      }},
+      "doctor": {"obj": {"live": "bool", "failed": "int", "stages_failed": {"list": "str"}}},
+      "report": {"obj": {
+        "formats": {"list": {"enum": ["html", "md"]}},
+        "detail": {"enum": ["failed", "all"]},
+        "embed": {"enum": ["none", "original", "lossless", "lossy"]},
+        "events": "int", "evidence": "bool", "complete": "bool", "artifacts": "bool",
+        "result": {"enum": ["ok", "error"]}
+      }},
+      "upgrade": {"obj": {
+        "from": "str", "to": "str", "abi_changed": "bool", "plugins_switched": "int",
+        "plugins_refused": "int", "plugins_left": "int", "check": "bool",
+        "result": {"enum": ["ok", "refused", "failed", "rolled_back"]}
+      }},
+      "init": {"obj": {
+        "interactive": "bool", "plugins_other": "int", "plugins_failed": "int",
+        "plugins": {"map": "int"},
+        "settings": {"map": "bool"},
+        "resources": {"obj": {
+          "api": "int", "srp": "int", "plugins_other": "int",
+          "db": {"obj": {"postgres": "int", "mysql": "int", "mariadb": "int"}},
+          "plugins": {"map": "int"}
+        }}
+      }},
+      "plugin": {"list": {"obj": {
+        "name": "str", "version": "str", "other": "bool",
+        "from": {"enum": ["registry", "repository"]},
+        "layer": {"enum": ["shared", "shared.local", "user", "user.local", "project", "project.local", "override", "override.local"]},
+        "result": {"enum": ["ok", "not_found", "no_build", "checksum", "network", "refused", "other"]}
+      }}}
+    }
+  }
+}

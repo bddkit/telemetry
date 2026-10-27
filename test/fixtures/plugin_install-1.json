@@ -1,0 +1,19 @@
+{
+ "schema": 1,
+ "bddkit": "0.3.3",
+ "os": "linux",
+ "arch": "x86_64",
+ "ci": null,
+ "command": "plugin_install",
+ "exit": 1,
+ "stage": null,
+ "duration_ms": 684,
+ "plugin": [
+  {
+   "other": true,
+   "from": "registry",
+   "layer": null,
+   "result": "not_found"
+  }
+ ]
+}

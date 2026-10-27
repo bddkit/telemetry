@@ -1,0 +1,24 @@
+{
+ "schema": 1,
+ "bddkit": "0.3.3",
+ "os": "linux",
+ "arch": "x86_64",
+ "ci": null,
+ "command": "report",
+ "exit": 0,
+ "stage": null,
+ "duration_ms": 2,
+ "report": {
+  "formats": [
+   "html",
+   "md"
+  ],
+  "detail": "failed",
+  "embed": "none",
+  "events": 55,
+  "evidence": true,
+  "complete": true,
+  "artifacts": false,
+  "result": "ok"
+ }
+}

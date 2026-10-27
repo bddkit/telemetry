@@ -1,0 +1,18 @@
+{
+ "schema": 1,
+ "bddkit": "0.3.3",
+ "os": "linux",
+ "arch": "x86_64",
+ "ci": null,
+ "command": "plugin_remove",
+ "exit": 1,
+ "stage": null,
+ "duration_ms": 38,
+ "plugin": [
+  {
+   "other": true,
+   "layer": null,
+   "result": "not_found"
+  }
+ ]
+}

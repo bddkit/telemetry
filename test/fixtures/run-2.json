@@ -1,0 +1,63 @@
+{
+ "schema": 1,
+ "bddkit": "0.3.3",
+ "os": "linux",
+ "arch": "x86_64",
+ "ci": null,
+ "command": "run",
+ "exit": 0,
+ "stage": null,
+ "duration_ms": 219,
+ "files": 2,
+ "scenarios": 5,
+ "examples": 1,
+ "failed": 0,
+ "concurrency": 2,
+ "fail_fast": false,
+ "scenario_ms": {
+  "p50": 3,
+  "p90": 9,
+  "max": 9,
+  "buckets": [
+   5,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "features": {
+  "junit": true,
+  "cucumber_json": false,
+  "events": true,
+  "evidence": [
+   "failures"
+  ],
+  "artifacts_dir": false,
+  "tags": false,
+  "paths": true,
+  "env": false
+ },
+ "usage": {
+  "vars": {
+   "steps": 15,
+   "ms": 13
+  }
+ },
+ "privacy": {
+  "reveal": false,
+  "custom_words": false,
+  "custom_fields": false
+ },
+ "resources": {
+  "api": 1,
+  "srp": 0,
+  "db": {
+   "postgres": 0,
+   "mysql": 0,
+   "mariadb": 0
+  },
+  "plugins": {},
+  "plugins_other": 0
+ }
+}

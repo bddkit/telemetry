@@ -1,0 +1,32 @@
+{
+ "schema": 1,
+ "bddkit": "0.3.3",
+ "os": "linux",
+ "arch": "x86_64",
+ "ci": null,
+ "command": "doctor",
+ "exit": 0,
+ "stage": null,
+ "duration_ms": 242,
+ "privacy": {
+  "reveal": false,
+  "custom_words": false,
+  "custom_fields": false
+ },
+ "resources": {
+  "api": 1,
+  "srp": 0,
+  "db": {
+   "postgres": 0,
+   "mysql": 0,
+   "mariadb": 0
+  },
+  "plugins": {},
+  "plugins_other": 0
+ },
+ "doctor": {
+  "live": false,
+  "failed": 0,
+  "stages_failed": []
+ }
+}
