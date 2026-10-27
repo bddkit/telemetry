@@ -10,9 +10,10 @@ The collector behind `https://telemetry.bddkit.dev`: a Cloudflare Worker that ta
 
 ## Deploy
 
-1. `wrangler login`
-2. `wrangler secret put POSTHOG_TOKEN`
-3. `wrangler deploy` (the custom domain and the rate-limit binding are in `wrangler.toml`)
-4. In the PostHog EU project: discard client IP data on, the GeoIP transformation off, a billing limit at the free tier.
+Cloudflare builds and deploys the Worker from this repository (Workers & Pages, Import a repository, deploy command `npx wrangler deploy`); every push to `main` deploys. The custom domain and the rate-limit binding come from `wrangler.toml`.
+
+Set once, in the Worker's Settings, Variables and Secrets: the secret `POSTHOG_TOKEN`. It is never in this repository.
+
+In the PostHog EU project: discard client IP data on, the GeoIP transformation off, a billing limit at the free tier.
 
 `npm test` needs only Node 22.
