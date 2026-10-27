@@ -2,6 +2,9 @@ name = "bddkit-telemetry"
 main = "src/worker.mjs"
 compatibility_date = "2026-10-01"
 
+[observability]
+enabled = true
+
 routes = [{ pattern = "telemetry.bddkit.dev", custom_domain = true }]
 
 # POSTHOG_TOKEN is a secret: `wrangler secret put POSTHOG_TOKEN`.
