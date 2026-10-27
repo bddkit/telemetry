@@ -51,7 +51,7 @@ async function forward(env, request, payload) {
   const { success } = await env.LIMITER.limit({ key: request.headers.get("CF-Connecting-IP") ?? "" });
   if (!success) return;
   const country = request.headers.get("CF-IPCountry");
-  await fetch(ENDPOINT, {
+  const reply = await fetch(ENDPOINT, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
@@ -66,6 +66,7 @@ async function forward(env, request, payload) {
       },
     }),
   });
+  if (!reply.ok) console.error("posthog", reply.status, await reply.text());
 }
 
 export default {
@@ -81,8 +82,8 @@ export default {
     } catch {
       return new Response(null, { status: 400 });
     }
-    // ponytail: a failed forward is dropped, telemetry is best-effort; add a retry or queue if loss matters
-    ctx.waitUntil(forward(env, request, payload).catch(() => {}));
+    // ponytail: a failed forward is logged and dropped, telemetry is best-effort; add a retry or queue if loss matters
+    ctx.waitUntil(forward(env, request, payload).catch((error) => console.error("forward failed", String(error))));
     return new Response(null, { status: 204 });
   },
 };
