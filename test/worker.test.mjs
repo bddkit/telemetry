@@ -36,6 +36,28 @@ test("every payload the binary really writes passes unchanged", async () => {
   }
 });
 
+test("schema 2 accepts resources.db (0.4.x) and its absence (split core), for run, doctor and init", async () => {
+  const fixture = (file) => fixtures.find(([name]) => name === file)[1];
+  const [doctor, init] = [fixture("doctor-1.json"), fixture("init-1.json")];
+  const without = ({ db, ...resources }) => ({ ...resources, plugins: { db: 1 } });
+  const shapes = {
+    run: [fixture("run-3.json"), (p, f) => ({ ...p, resources: f(p.resources) }), (p) => p.resources],
+    doctor: [{ ...doctor, schema: 2 }, (p, f) => ({ ...p, resources: f(p.resources) }), (p) => p.resources],
+    init: [{ ...init, schema: 2 }, (p, f) => ({ ...p, init: { ...p.init, resources: f(p.init.resources) } }), (p) => p.init.resources],
+  };
+  for (const [command, [base, rebuild, resourcesOf]] of Object.entries(shapes)) {
+    assert.equal(base.schema, 2, command);
+    assert.ok(resourcesOf(base).db !== undefined, command);
+    for (const payload of [base, rebuild(base, without)]) {
+      const { response, sent } = await post(payload);
+      assert.equal(response.status, 204, command);
+      const { country, $process_person_profile, $geoip_disable, ...properties } = sent[0].body.properties;
+      assert.deepEqual(properties, payload, command);
+    }
+    assert.equal(resourcesOf(rebuild(base, without)).db, undefined, command);
+  }
+});
+
 test("an unknown key reaches PostHog without it, at any depth", async () => {
   const { response, sent } = await post({
     ...run,
